@@ -50,6 +50,7 @@ struct Sphere *sphere1; //(1.0f, 8, 8, false);
 
 float cameraAngleX;
 float cameraAngleY;
+GtkWidget *gl_area;
 
 // Vertex shader
 /*
@@ -83,7 +84,7 @@ scale_changed (GtkRange *range, gpointer data)
 {
     theSliderValue = gtk_range_get_value (range);
     g_print("Some information...%f\n", theSliderValue);
-
+    gtk_gl_area_queue_render(gl_area);
 
     return TRUE;
 }
@@ -172,7 +173,7 @@ static void activate(GtkApplication *app, gpointer user_data)
 	GtkWidget *grid = gtk_grid_new();
 	GtkWidget *label = gtk_label_new("Hello Label World!");
 	GtkWidget *button = gtk_button_new_with_label("Hello World of Buttons...");
-	GtkWidget *gl_area = gtk_gl_area_new();
+	gl_area = gtk_gl_area_new();
 	GtkWidget *label2 = gtk_label_new("Label 1 at the bottom...Time");
 	GtkWidget *label3 = gtk_label_new("Label 2 at the bottom...# Dust grains");
 
@@ -190,7 +191,7 @@ static void activate(GtkApplication *app, gpointer user_data)
 	gtk_grid_set_column_spacing(GTK_GRID(grid), 50);
 	gtk_grid_set_row_spacing(GTK_GRID(grid), 10);
 
-    gtk_gl_area_set_auto_render(gl_area, 1);
+    // gtk_gl_area_set_auto_render(gl_area, 1);
 
 	/* -------- Customizing a few things: setting title, changing size of window, entering the window on the screen --------*/
 
